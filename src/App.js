@@ -1,26 +1,30 @@
+/**
+ * @file index.js
+ * @author LaughingJacky
+ * @create date 2019-06-22 17:50:55
+ * @modify date 2019-06-22 17:50:55
+ */
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from 'react-dom';
+import 'todomvc-app-css/index.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+import {StoreProvider} from './store/context';
+import Header from './components/Header/index';
+import List from './components/List/index';
+import Footer from './components/Footer/index';
+
+export const App = props => (<StoreProvider>
+    <div className="todoapp">
+        <header className="header">
+            <h1>todos</h1>
+            <Header />
+        </header>
+        <List />
+        <Footer />
     </div>
-  );
-}
+</StoreProvider>);
 
-export default App;
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root') || document.createElement('div') // for testing purposes
+);
